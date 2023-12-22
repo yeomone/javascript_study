@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터타입-1</title>
+</head>
+<body>
+    
+    <script>
+        let a = 10;
+        let b = 5;
+        console.log(a)
+        console.log(typeof a); // string(문자) number(숫자)
+        console.log(typeof(a));
+        console.log(typeof (a+b));
+        console.log(typeof(a*b));
+        console.log(typeof b, a);
+        console.log(typeof a, typeof b);
+        console.log(typeof (a), typeof (b));
+        // a의 데이터 타입은 ㅇㅇㅇ다.
+        // b의 데이터 타입은 ㅇㅇㅇ다.
+
+        console.log('a의 데이터 타입은 '+typeof a+'다.');
+        console.log('b의 데이터 타입은 '+typeof b+'다.');
+        console.log('----------------------------------');
+        let c = 'Javascript';
+        let d = '3.14';
+        console.log(typeof c);
+        console.log(typeof d);
+        console.log(typeof (a+d)); 
+        // 숫자+문자 = 문자
+        // 숫자+숫자 = 숫자
+        // 문자+문자 = 문자
+        // 숫자+숫자+문자 = 문자
+        console.log(1+'1');
+        console.log(typeof (1+'1'));
+        console.log('---------------------------------');
+        let e = ''; // 빈 문자열, 빈 문자를 e에 대입함
+        let f
+        console.log(typeof e); // string
+        console.log(typeof f); // undefined (정의(대입x)하지 않음)
+        // console.log(typeof g); // undefined (존재하지 않음)
+        // console.log(g); // error
+        // undefined(정의하지 않음) null(값이 존재하지 않는다, 비어있다)
+        let g = 1;
+        console.log(g+a); // 11
+        console.log(g-b); // -4
+        g = 0; // 0을 넣어주면 숫자 초기화
+        g = null; // 존재하는 변수 값을 제거해야할 때
+        console.log(typeof g); // object
+        console.log(g); // null
+
+        console.log(typeof (a+null)); // number
+        console.log(typeof (b+undefined)); // number
+
+        // var, let, const 데이터타입은? NO
+        // var, let, const로 생성된 변수에 대입되는 값에 따라 데이터가 결정된다.
+    </script>
+</body>
+</html>
