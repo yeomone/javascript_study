@@ -93,3 +93,30 @@
 ---------------------------
 ## addEventListener
 * 
+---------------------------
+## DOM 관계속성
+1. parentNode 부모 노드, parentElement 부모 요소
+    - parentNode.parentNode 연속 사용 (부모의 부모 잡기)
+    - 자식 또는 자손 노드.parentElement (특정 자식의 부모 잡기)
+2. javascript에서 css 제어하기 -> style 속성
+    - DOM.관계.style = "속성:값; 속성:값; 속성:값;"
+        * (위) style 2번 이상 생성 시 이전 속성:값 제거됨
+    - DOM.관계.관계.style.속성 = "값";
+        * (위) style 2번 이상 생성 시 기존 속성값에 이어서 추가됨
+    - DOM.style.속성 = "값";
+    - 위 관계는 필요에 따라 선택 속성
+3. childNodes 자식 노드, children 자식 요소,  childElementCount 자식 요소 개수
+    - childNodes 텍스트 포함 자식 노드 잡기
+    - children 자식 요소만 잡기
+    - childElementCount 자식 요소의 개수
+4. 자식 노드 잡기
+    - firstChild 텍스트 포함 자식 노드
+    - firstElementChild 첫번째 자식 요소
+    - lastChild 텍스트 포함 자식 노드
+    - lastElementChild 마지막 자식 요소
+6. 형제 노드 잡기
+    - previousSibling 공백 포함 이전 형제
+    - previousElementSibling 요소만 체크하는 이전 형제
+    - nextSibling 공백포함 다음 형제
+    - nextElementSibling 요소만 체크하는 다음 형제
+---------------------------
