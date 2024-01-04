@@ -91,9 +91,6 @@
 * 주의사항 -> value속성은 form 전용이므로 다른 태그일 때 해당 값을 알고 싶다면 다른 속성 및 메서드를 사용해야 한다.
 * 주의사항 -> `DOM.value`로 값 처리 시 숫자를 쓰더라도 문자열(string)으로 인식하기 때문에 필요한 경우`Number()` 메서드를 활용해 (Number)데이터 타입으로 변환해야 한다. ex `Number(객체.value())`
 ---------------------------
-## addEventListener
-* 
----------------------------
 ## DOM 관계속성
 1. parentNode 부모 노드, parentElement 부모 요소
     - parentNode.parentNode 연속 사용 (부모의 부모 잡기)
@@ -120,3 +117,18 @@
     - nextSibling 공백포함 다음 형제
     - nextElementSibling 요소만 체크하는 다음 형제
 ---------------------------
+## innerHTML
+* `객체.innerHTML;` 특정 객체의 자식, 자손 HTML 읽기
+* `객체.innerHTML = 값;` HTML 삽입 및 변경
+## innerText
+* `객체.innerText` 특정 객체의 자식, 자손 텍스트 노드 읽기 (HTML x)
+* `객체.innerText = 값;` 텍스트 노드 삽입 및 변경 (HTML x)
+## appendChild
+* `객체.appendChild()`
+* `객체.객체.appendChild()`
+* `객체.속성.appendChild()`
+* `객체.속성.속성.appendChild()`
+* 객체의 마지막 자식 노드 위치에 `()` 괄호 안 값 추가
+## createElement
+* `document.createElement()`
+* 요소 노드 자바스크립트 내에서 동적인 용도로 생성할 경우
