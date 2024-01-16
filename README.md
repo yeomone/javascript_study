@@ -133,7 +133,7 @@
 * `document.createElement()`
 * 요소 노드 자바스크립트 내에서 동적인 용도로 생성할 경우
 --------------------
-# 논리연산자와 비교연산자, 논리데이ㅓ터
+# 논리연산자와 비교연산자, 논리데이터
 ## 논리데이터
 * 참 또는 거짓 두 가지 값 중 하나의 데이터형식 조건문, 논리연산자, 논리적 판단 등에 사용합니다.
 * true, false
@@ -151,3 +151,20 @@
 * OR(||) : 양쪽 피연산자 중 하나라도 참이면 결과는 참
 * NOT(!) : 피연산자의 논리 값을 반전함. 참이면 거짓 반환
 * 논리 연산자 우선순위 : Not >> AND >> OR
+---------------------
+# className, classList
+## className
+* 제한 없이 다양한 class 속성을 가지고 있는 class를 생성해서 DOM에 적용
+* ☆★ 우선순위 : inline > # > . > Tag ★☆
+* `ex) DOM.className = 'class1'` 
+* 여러 개 작성 시 앞에 공백
+* `ex) DOM.className += ' class2'`
+* 우선순위가 같으면 작성 순서에 따라 적용됨
+## DOM.classList
+* 복합연산자 없는 메서드 구조
+* (,)로 여러개 작성 가능
+* 추가 `ex) DOM.classList.add('class1', 'class2')`
+* 제거 `ex) DOM.classList.remove('class1')`
+* 버튼으로 제어 `DOM.classList.toggle('class1')`
+* 기존 클래스에서 다른 클래스로 변경 `ex)DOM.classList.replace('class1', 'class2')`
+* 참 거짓 반환 `ex)DOM.classList.contains('class1')`
