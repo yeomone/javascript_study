@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one-1</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        .wrap {
+            top: 100vh; 
+            position: relative; top: 0; /* 초기값 설정 */
+            transition: all 0.5s;
+        }
+        .container {
+            font-size: 5rem; text-align: center;
+            height: 100vh;
+        }
+        .container h1{transition: all 1s;}
+        .container:nth-child(1) {background-color: aqua;}
+        .container:nth-child(2) {background-color: lime;}
+        .container:nth-child(3) {background-color: yellow;}
+        .container:nth-child(4) {background-color: tomato;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="container">1</div>
+        <div class="container"><h1>2</h1></div>
+        <div class="container"><h1>3</h1></div>
+        <div class="container"><h1>4</h1></div>
+    </div>
+    <script>
+
+        const wrap = document.querySelector('.wrap')
+        const container = document.querySelectorAll('.container')
+        let page = 0
+        console.log(wrap, container)
+
+        window.addEventListener('wheel',(e)=>{
+            e.preventDefault() // 새로고침 막기
+            console.log(e.deltaY)
+            if(e.deltaY > 0){page++}
+            if(e.deltaY < 0){page--}
+            if(page > container.length-1){
+                page = container.length-1
+            }// 증가값 제한
+            if(page < 0){page = 0} // 감소값 제한
+            wrap.style.top = `${page *-100}vh`
+            console.log(`${page *-100}vh`)
+
+            // 스크롤 애니메이션 동작 추가 작성위치
+            for(let i of container){
+                console.log(i.offsetTop) // 모든 container 위치 확인
+                if(i.offsetTop >= container[1].offsetTop){// 모든 container의 위치 중 두번째 container의 위치와 같을 때
+                    // 두번쨰 container 의 첫번째 자식 h1의 글자 색 변경하기
+                    container[1].children[0].style.color = '#f00'
+                }
+                if(i.offsetTop >= container[2].offsetTop){
+                    container[2].children[0].style.background = '#f00'
+                }
+            }
+
+        }, {passive:false}) // 이전 스크롤 기다리지 않기
+
+        // deltaY = 세로 스크롤 양 반환하는 마우스 이벤트 속성
+        
+    </script>
+</body>
+</html>

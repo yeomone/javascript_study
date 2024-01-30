@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide-1</title>
+    <!--플러그인 필수 css cdn 연결-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!--플러그인 필수 JS cdn 연결-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        #mainSlide1 {
+            max-width: 1000px; 
+            height: 500px; /* direction:vertical 설정 시 */
+            margin: 50px auto 0; 
+            overflow: hidden;
+        }
+        .slide1, .slide2, .slide3 {height: 500px; font-size: 5rem;}
+        .slide1 {background-color: aqua;}
+        .slide2 {background-color: lime;}
+        .slide3 {background-color: yellow;}
+        /* 사용자 지정 page design */
+        .page_bar {color: #00f; font-weight: 800; padding: 10px;}
+        /* 사용자 지정 page design 활성화는 정해진 이름을 사용해야함 */
+        .swiper-pagination-bullet-active {color: #fff;}
+    </style>
+</head>
+<body>
+    <div class="swiper-container" id="mainSlide1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">슬라이드1</div>
+            <div class="swiper-slide slide2">슬라이드2</div>
+            <div class="swiper-slide slide3">슬라이드3</div>
+        </div>
+        <div class="swiper-pagination"></div><!-- 페이지번호표시용 -->
+        <div class="pagination_progress"></div><!--페이지로딩표시 -->
+        <div class="swiper-button-prev"></div><!-- 이전버튼 -->
+        <div class="swiper-button-next"></div><!-- 다음버튼 -->
+    </div>
+    <div class="btn">
+        <button type="button" id="pause">일시정지</button><!-- a 가능 -->
+        <button type="button" id="start">다시시작</button><!-- a 가능 -->
+    </div>
+    <script>
+        const mySwiper = new Swiper('#mainSlide1', {
+            // 속성:값, 속성:값,
+            autoplay:{delay:1000,},//자동 재생(기본값 false)
+            loop:true, // 반복(기본값 false)
+            // direction:'vertical',//방향(기본값 horizontal) , vertical 설정 시 부모에 높이값 설정
+            // effect:'fade',//제자리 효과(direction과 같이 쓸 수 없음)
+            /* effect:'cube',// 큐브 돌아가는 효과 (부모에 overflow 뺴기)
+            // 큐브 이펙트 설정 시 추가 옵션
+            cubeEffect:{
+                shadow:true,// 큐브 하단 그림자 (안 보이기 false)
+                shadowOffset:10, // 하단 그림자 y위치(기본값 20)
+                shadowScale:1.1, //하단 그림자 크기(기본값 1)
+                slideShadows:true, // 다음 큐브 그림자 유무(기본값 false)
+            },
+            grabCursor:true, // 마우스 올리면 손모양 아이콘 변경하기 */
+            // effect:'flip', // 뒤집히면서 넘어가는 effect
+
+            // 페이지 번호 표시하기(HTML 태그 먼저 준비 후 작성)
+            pagination:{
+                // el:'#mainSlide1 .swiper-pagination',
+                //type:'bullets',//모양 설정
+                // el:'#mainSlide1 .pagination_progress', // 로딩 HTML 연결
+                // type:'progressbar' //HTML 별도 준비
+
+                // 페이지 모양을 자유롭게 변경하고 싶을 때
+                el:'#mainSlide1 .swiper-pagination',
+                type:'bullets', //여기까진 위와 동일
+                clickabel:true, // 사용자모양 클릭 가능한 설정
+                renderBullet:function(i, name){// 사용자 지정 함수생성
+                    console.log(i, name) //i는 인덱스, name은 page 인식 이름
+                    //return에서 원하는 태그 구현
+                    // return으로 생성한 태그에 클래스를 주면 css도 가능
+                    return `<span class="page_bar ${name}">${i+1}</span>`
+                },//pagination 종료 위치
+            },
+            // 내비게이션 속성
+            navigation:{
+                nextEl:'#mainSlide1 .swiper-button-next',
+                prevEl:'#mainSlide1 .swiper-button-prev',
+            },
+            // 여러장의 슬라이드 보기
+            direction:'horizontal',//기본값이므로 생략 가능
+            slidesPerView:2, //한 화면 보이는 슬라이드 개수(전체 슬라이드 개수보다 최소 1개 적게 작성, 총 3개라면 최대 2개까지)
+            spaceBetween:10,//슬라이드 사이 여백 (flex와 동일 개념)(기본값 0)
+        })
+        
+        // 재생, 정지 버튼으로 swiper 제어하기
+        const pause_btn = document.querySelector('#pause')
+        const start_btn = document.querySelector('#start')
+        pause_btn.addEventListener('click',()=>{
+            // 정지하고 싶은 swiper를 가진 변수명 연결
+            mySwiper.autoplay.stop()
+        })
+        start_btn.addEventListener('click',()=>{
+            mySwiper.autoplay.start()
+        })
+
+
+        /*
+        --- 적용 시 주의사항 
+        * 태그 구조 지키기
+        * 태그 클래스명 지키기(추가 클래스명은 자유)
+        * 태그 부모에 아이디 설정하기 - 해당 아이디 명으로 swiper 연결하기
+        * 태그 부모에 max-width, overflow 등 필요 속성 설정하기
+        */
+
+    </script>
+</body>
+</html>
