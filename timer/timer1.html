@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        .slider_wrap{
+            width: 500px; border: 5px solid black;
+            margin: 50px auto 0; overflow-x: auto;
+        }
+        .slider_wrap .slide_container {
+            /* 내용만큼 계산해서 크기 잡기 max-content */
+            width: max-content; display: flex; flex-flow: row nowrap;
+            /* transform: translateX(0); 1 */
+            /* transform: translateX(-500px); 2 */
+            /* transform: translateX(-1000px); 3 */
+        }
+        .slider_wrap .slide_container .slide {
+            width: 500px; height: 350px; font-size: 5rem;
+        }
+        .slider_wrap .slide_container .slide1 {background: aqua;}
+        .slider_wrap .slide_container .slide2 {background: lime;}
+        .slider_wrap .slide_container .slide3 {background: tomato;}
+        
+        .slide_transition {transition: transform 0.8s;}
+    </style>
+</head>
+<body>
+    <div class="slider_wrap">
+        <div class="slide_container">
+            <div class="slide slide1">1</div>
+            <div class="slide slide2">2</div>
+            <div class="slide slide3">3</div>
+        </div>
+    </div>
+    <button type="button" id="pause">일시정지</button>
+    <button type="button" id="play">재생</button>
+    <script>
+
+        // setInterval 일정시간 반복 타이머
+        // 0 = 0 * 500
+        // -500 = 1 * 500
+        // -1000 = 2 * 500
+        let num = 0;
+        let total = 0;
+        const slide_container = document.querySelector('.slide_container')
+        const slides = document.querySelectorAll('.slide')
+        const pause_btn = document.querySelector('#pause')
+        const play_btn = document.querySelector('#play')
+        // slide의 너비값 = 부모.자식.offsetWidth
+        let slide_w = slide_container.children[0].offsetWidth
+        
+        console.log(slides) //slide 1,2,3
+        const clone_slide = slides[0].cloneNode(true)
+        // 복제대상.cloneNode() == 자식, 자손 없이 대상만 복제하라
+        // 복제대상.cloneNode(true) == 자식, 자손 포함해서 대상을 복제하라
+        console.log(clone_slide)
+        slide_container.appendChild(clone_slide)
+        slide_container.classList.add('slide_transition')
+        
+        window.addEventListener('resize',()=>{
+            slide_w = slide_container.children[0].offsetWidth
+        })
+            
+        // 처음 재생 슬라이드
+        let timer1 = setInterval(timerSlide, 1000)
+        
+        // 정지
+        pause_btn.addEventListener('click',()=>{
+            clearInterval(timer1)
+        })
+        
+        // 정지 후 재생
+        play_btn.addEventListener('click',()=>{
+            timer1 = setInterval(timerSlide, 1000)
+        })
+
+        // 재사용 함수 setInterval 호출용
+        function timerSlide(){
+            num++
+            if(num > slides.length){
+                num=0
+                slide_container.classList.remove('slide_transition')
+                setTimeout(()=>{
+                    slide_container.style.transform = 'translateX(0px)'
+                    slide_container.classList>add('slide_transition')
+                },100)
+                // slide_container.classList.add('slide_transition')
+            }
+            total = num * slide_w;
+            slide_container.style.transform = `translateX(-${total}px)`
+            console.log(num, total)
+        }
+        
+    </script>
+</body>
+</html>
